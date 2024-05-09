@@ -306,7 +306,7 @@ float4 PS_DownSampleLast(VertData v_in) : TARGET
     {
         for (int j = 0; j < last_height; j++)
         {
-            float len = pow(max(0.0, 1.0 - length(float2((i + 0.5) / last_width, (j + 0.5) / last_height))), 0.5) * 2.0 + 1.0;
+            float len = pow(max(0.0, 1.0 - length(float2((i + 0.5) / last_width, 0))), 0.5) * 2.0 + 1.0;
             result.rgb += img_calc.Load(int3(i, j, 0)).rgb * len;
         }
     }
@@ -325,7 +325,7 @@ float4 PS_DownSampleLast(VertData v_in) : TARGET
 
         if (sub > 2.0)
         {
-            result.a = max(min(1.0, sub - 2.0), last.a);
+            result.a = max(min(1.0, max(0.1, (sub - 2.0) / 2.0)), last.a);
         }
         else if (result.r < 0.5 && result.g < 0.5 && result.b < 0.5)
         {
