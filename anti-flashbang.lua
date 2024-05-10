@@ -327,7 +327,7 @@ float4 PS_DownSampleLast(VertData v_in) : TARGET
         {
             result.a = max(min(1.0, max(0.1, (sub - 2.0) / 2.0)), last.a);
         }
-        else if (result.r < 0.5 && result.g < 0.5 && result.b < 0.5)
+        else if (result.r < 2.0 && result.g < 2.0 && result.b < 0.5)
         {
             result.a = max(0.0, last.a - fadetimelow);
         }
